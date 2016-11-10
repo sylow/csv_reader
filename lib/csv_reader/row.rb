@@ -45,6 +45,15 @@ module CsvReader
       end
     end
 
+    def value(key)
+      self[key]&.value
+    end
+    def values(keys)
+      Hash[keys.map {|key|
+        [key, value(key)]
+      }]
+    end
+
     def method_missing(key, *args)
       self[key, *args]
     end

@@ -76,4 +76,24 @@ RSpec.describe CsvReader::Row do
     end
   end
 
+  describe "#value" do
+    it "returns the value of the given field" do
+      expect(row.value('h1')).to eq('d1')
+    end
+
+    it "returns nil for a field that doesn't exist" do
+      expect(row.value('nothing')).to be_nil
+    end
+  end
+
+  describe "#values" do
+    it "returns a hash of the keys mapped to their values" do
+      expect(row.values(['h1', 'h2', 'nothing'])).to eq({
+        'h1' => 'd1',
+        'h2' => 'd2',
+        'nothing' => nil,
+      })
+    end
+  end
+
 end
