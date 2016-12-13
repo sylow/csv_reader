@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "razor_csv_reader"
   spec.version       = CsvReader.gem_version
   spec.authors       = ["Max Hollmann"]
-  spec.email         = ["maxhollmann@gmail.com"]
+  spec.email         = ["max.hollmann@toptal.com"]
 
   spec.summary       = %q{CSV library.}
   #spec.homepage      = "TODO: Put your gem's website or public repo URL here."

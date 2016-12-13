@@ -51,4 +51,24 @@ RSpec.describe CsvReader::Reader do
       expect(reader.data.first.mapping).to eq(mapping)
     end
   end
+
+
+  context "with DOS style line endings" do
+    let(:csv) { super().string.gsub("\n", "\r\n") }
+
+    it "still works" do
+      expect(reader.data.first[0]).to eq('data11')
+      expect(reader.data.first[1]).to eq('data12')
+    end
+  end
+
+  context "with faulty DOS style line endings with double \r" do
+    let(:csv) { super().string.gsub("\n", "\r\r\n") }
+
+    it "still works" do
+      expect(reader.data.first[0]).to eq('data11')
+      expect(reader.data.first[1]).to eq('data12')
+    end
+  end
+
 end

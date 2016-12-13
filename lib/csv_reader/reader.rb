@@ -6,7 +6,7 @@ module CsvReader
     include Enumerable
 
     def initialize(input, mapping: nil)
-      data = input.is_a?(Array) ? input : CSV.new(input).read
+      data = read_csv(input)
       if data.count >= 1
         self.header = Row.new(data[0])
         header.header = header
@@ -18,6 +18,19 @@ module CsvReader
     def each(&block)
       data.each {|row| block.call(row) }
     end
+
+
+    private
+
+      def read_csv(input)
+        return input if input.is_a?(Array)
+
+        input = input.string if input.respond_to?(:string) # StringIO -> String
+        input = input.to_s
+        input.tr!("\r", "")
+
+        CSV.new(input).read
+      end
 
   end
 
