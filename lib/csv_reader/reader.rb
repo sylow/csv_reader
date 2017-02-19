@@ -25,7 +25,7 @@ module CsvReader
       def read_csv(input)
         return input if input.is_a?(Array)
 
-        input = input.string if input.respond_to?(:string) # StringIO -> String
+        input = input.read if input.respond_to?(:read) # File/StringIO -> String
         input = input.to_s
         input.tr!("\r", "")
 
