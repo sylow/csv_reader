@@ -41,7 +41,7 @@ module CsvReader
         mapped = mapping.(key)
         mapped.respond_to?(:call) ?
           self[*Array(mapped.(*args))] :
-          to_h[mapped]
+          mapped.is_a?(Integer) ? self[mapped] : to_h[mapped]
       end
     end
 
