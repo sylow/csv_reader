@@ -9,8 +9,8 @@ module CsvReader
 
 
     def value
-      return nil if na? || str.blank?
-      str
+      return nil if str.blank?
+      CsvReader.config[:process_value].(str)
     end
 
     def to_s
@@ -19,11 +19,6 @@ module CsvReader
 
     def ==(other)
       value == other
-    end
-
-    # TODO let the client do this via config/callback
-    def na?
-      str.downcase == "n/a"
     end
 
   end

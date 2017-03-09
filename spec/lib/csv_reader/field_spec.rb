@@ -22,8 +22,17 @@ RSpec.describe CsvReader::Field do
       expect(CsvReader::Field.new(" ").value).to eq(nil)
     end
 
-    it "returns nil if it's N/A" do
-      expect(CsvReader::Field.new("N/A").value).to eq(nil)
+    it "returns N/A if it's N/A" do
+      expect(CsvReader::Field.new("N/A").value).to eq("N/A")
+    end
+
+    context "with a value processor" do
+      before { CsvReader.config[:process_value] = ->(val) { val == "N/A" ? nil : val } }
+      after { CsvReader.reset_config! }
+
+      it "returns nil if it's N/A" do
+        expect(CsvReader::Field.new("N/A").value).to eq(nil)
+      end
     end
   end
 

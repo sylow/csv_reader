@@ -24,7 +24,7 @@ RSpec.describe CsvReader::Reader do
     expect(reader.data.first[0]).to eq('data11')
     expect(reader.data.first[1]).to eq('data12')
     expect(reader.data.last[0]).to  eq('data21')
-    expect(reader.data.last[1]).to  eq(nil)
+    expect(reader.data.last[1]).to  eq('N/A')
   end
 
   it "connects the data to the header" do
@@ -49,6 +49,17 @@ RSpec.describe CsvReader::Reader do
 
     it "forwards the mapping to its data" do
       expect(reader.data.first.mapping).to eq(mapping)
+    end
+  end
+
+
+  context "with a value processor" do
+    before { CsvReader.config[:process_value] = ->(val) { val == "N/A" ? nil : val } }
+    after { CsvReader.reset_config! }
+
+    it "returns the processed value" do
+      expect(reader.data.last[0]).to eq('data21')
+      expect(reader.data.last[1]).to eq(nil)
     end
   end
 

@@ -11,7 +11,9 @@ module CsvReader
         self.header = Row.new(data[0])
         header.header = header
       end
-      self.data = data[1..-1].map {|row| Row.new(row, header: header, mapping: mapping) }
+      self.data = data[1..-1].map {|row|
+        Row.new(row, header: header, mapping: mapping)
+      }
     end
 
 
