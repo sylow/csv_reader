@@ -4,7 +4,6 @@ module CsvReader
     class NoHeader < StandardError; end
 
     include Enumerable
-    extend Memoist
 
     attr_accessor :fields, :header, :mapping
 
@@ -62,7 +61,6 @@ module CsvReader
       raise NoHeader unless has_header?
       Hash[header.map(&:value).zip(fields)]
     end
-    memoize :to_h
 
 
     def has_header?

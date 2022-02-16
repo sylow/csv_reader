@@ -1,34 +1,36 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'csv_reader/version'
+# -*- encoding: utf-8 -*-
+# stub: razor_csv_reader 1.0.0 ruby lib
 
-Gem::Specification.new do |spec|
-  spec.name          = "razor_csv_reader"
-  spec.version       = CsvReader.gem_version
-  spec.authors       = ["Max Hollmann"]
-  spec.email         = ["max.hollmann@toptal.com"]
+Gem::Specification.new do |s|
+  s.name = "razor_csv_reader".freeze
+  s.version = "1.0.0"
 
-  spec.summary       = %q{CSV library.}
-  #spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
+  s.metadata = { "allowed_push_host" => "TODO: Set to 'http://mygemserver.com'" } if s.respond_to? :metadata=
+  s.require_paths = ["lib".freeze]
+  s.authors = ["Max Hollmann".freeze]
+  s.bindir = "exe".freeze
+  s.date = "2022-02-16"
+  s.email = ["max.hollmann@toptal.com".freeze]
+  s.files = [".gitignore".freeze, ".rspec".freeze, ".ruby-version".freeze, ".travis.yml".freeze, "Gemfile".freeze, "README.md".freeze, "Rakefile".freeze, "bin/console".freeze, "bin/setup".freeze, "lib/csv_reader.rb".freeze, "lib/csv_reader/config.rb".freeze, "lib/csv_reader/field.rb".freeze, "lib/csv_reader/reader.rb".freeze, "lib/csv_reader/row.rb".freeze, "lib/csv_reader/version.rb".freeze, "lib/razor_csv_reader.rb".freeze, "razor_csv_reader.gemspec".freeze]
+  s.rubygems_version = "3.1.4".freeze
+  s.summary = "CSV library.".freeze
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
+
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
   end
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
-
-  spec.add_development_dependency "bundler", "~> 1.12"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
-
-  spec.add_dependency "activesupport"#, "~> 0.15.0"
-  spec.add_dependency "memoist", "~> 0.15.0"
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<bundler>.freeze, ["~> 1.12"])
+    s.add_development_dependency(%q<rake>.freeze, ["~> 10.0"])
+    s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0"])
+    s.add_runtime_dependency(%q<activesupport>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<bundler>.freeze, ["~> 1.12"])
+    s.add_dependency(%q<rake>.freeze, ["~> 10.0"])
+    s.add_dependency(%q<rspec>.freeze, ["~> 3.0"])
+    s.add_dependency(%q<activesupport>.freeze, [">= 0"])
+  end
 end

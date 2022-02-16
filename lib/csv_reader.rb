@@ -1,5 +1,4 @@
 require 'csv'
-require 'memoist'
 
 require 'active_support'
 require 'active_support/core_ext/object/blank'
